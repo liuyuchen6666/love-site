@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Luis and Nicole's Home 🏠</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <meta name="theme-color" content="#4a1520" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Our Home" />
+  <link rel="stylesheet" href="leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="hearts"></canvas>
+
+  <svg width="0" height="0" style="position:absolute">
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.7 4 7.2 4c2 0 3.6 1.1 4.8 2.8C13.2 5.1 14.8 4 16.8 4c3.5 0 5.8 3.6 4.5 7.1-1.8 4.8-9.3 9.4-9.3 9.4z"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></symbol>
+    <symbol id="i-plan" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></symbol>
+    <symbol id="i-story" viewBox="0 0 24 24"><path d="M4 5.5C7 4.5 10 5 12 7c2-2 5-2.5 8-1.500V19c-3-1-6-.5-8 1.500C10 18.500 7 18 4 19V5.500zM12 7v13.500"/></symbol>
+    <symbol id="i-quill" viewBox="0 0 24 24"><path d="M20 3.5C12.5 4 7.6 9 6.6 16.4L5 20.5M6.6 16.4c5.4-.4 9.9-4.3 11-9.6M9.2 13.3l4.3-4.3"/></symbol>
+    <symbol id="i-letter" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6.5L20.5 7"/></symbol>
+  </svg>
+
+  <header class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-mask"></div>
+    <h1 class="site-name" id="siteName"></h1>
+    <div class="couple glass">
+      <div class="person">
+        <img id="boyAvatar" alt="" />
+        <span id="boyName"></span>
+      </div>
+      <svg class="beat"><use href="#i-heart" /></svg>
+      <div class="person">
+        <img id="girlAvatar" alt="" />
+        <span id="girlName"></span>
+      </div>
+    </div>
+    <p class="slogan" id="slogan"></p>
+  </header>
+
+  <main>
+    <section class="timer card fade">
+      <div class="chibi" id="chibi">
+        <div class="chibi-bubble" id="chibiBubble"><p></p><small></small></div>
+        <div class="chibi-stage" id="chibiStage"></div>
+        <div class="chibi-acts">
+          <button type="button" data-act="hug">抱抱</button>
+          <button type="button" data-act="kiss">亲亲</button>
+          <button type="button" data-act="lift">举高高</button>
+          <button type="button" data-act="spin">转圈圈</button>
+          <button type="button" data-act="heart">比心</button>
+        </div>
+      </div>
+      <p class="eyebrow">Together For</p>
+      <h2>我们已经在一起</h2>
+      <div class="counter">
+        <div><b id="d">0</b><small>天</small></div>
+        <div><b id="h">0</b><small>时</small></div>
+        <div><b id="m">0</b><small>分</small></div>
+        <div><b id="s">0</b><small>秒</small></div>
+      </div>
+      <p class="since" id="since"></p>
+      <div class="met" id="met" hidden>
+        <p class="eyebrow">Since We Met</p>
+        <p class="met-line">我们相识已经 <b id="metd">0</b> 天 <b id="meth">0</b> 时 <b id="metm">0</b> 分 <b id="mets">0</b> 秒</p>
+        <p class="since" id="metSince"></p>
+      </div>
+    </section>
+
+    <section class="anniv card fade" id="anniv">
+      <button type="button" class="anniv-head" id="annivToggle" aria-expanded="false">
+        <span class="eyebrow">Upcoming</span>
+        <span class="anniv-title">纪念日</span>
+        <span class="anniv-next" id="annivNext"></span>
+        <span class="chev">展开全部</span>
+      </button>
+      <p class="anniv-today" id="annivToday" hidden></p>
+      <div class="anniv-body"><ul class="anniv-list" id="annivList"></ul></div>
+    </section>
+
+    <nav class="nav fade">
+      <a href="#story" class="nav-card"><svg><use href="#i-story" /></svg>我们的故事<small>Our Story</small></a>
+      <a href="#moments" class="nav-card"><svg><use href="#i-pen" /></svg>点点滴滴<small>Moments</small></a>
+      <a href="#notes" class="nav-card"><svg><use href="#i-quill" /></svg>见字如面<small>Letters</small></a>
+      <a href="#list" class="nav-card"><svg><use href="#i-list" /></svg>恋爱清单<small>Love List</small></a>
+      <a href="#album" class="nav-card"><svg><use href="#i-photo" /></svg>恋爱相册<small>Album</small></a>
+      <a href="#footprints" class="nav-card"><svg><use href="#i-map" /></svg>足迹地图<small>Footprints</small></a>
+      <a href="#plans" class="nav-card"><svg><use href="#i-plan" /></svg>未来计划<small>Future</small></a>
+      <a href="#messages" class="nav-card"><svg><use href="#i-letter" /></svg>留言祝福<small>Wishes</small></a>
+    </nav>
+
+    <section id="story" class="page fade">
+      <h2 class="title"><small>Our Story</small>我们的故事 <em id="storyCount"></em></h2>
+      <div class="story-tools">
+        <button type="button" id="storyOrder">最新在前</button>
+        <button type="button" id="storyShow">▶ 放映</button>
+      </div>
+      <div class="story" id="storyBox"></div>
+    </section>
+
+    <section id="moments" class="page fade">
+      <h2 class="title"><small>Moments</small>点点滴滴</h2>
+      <form class="card edit-form edit-only" id="momentForm">
+        <input type="date" id="momentDate" required />
+        <textarea id="momentText" maxlength="1000" placeholder="今天发生了什么..." required></textarea>
+        <label class="file">添加图片（可选）<input type="file" id="momentImage" accept="image/*" /></label>
+        <button type="submit">记下来</button>
+      </form>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section id="notes" class="page fade">
+      <h2 class="title"><small>Letters to You</small>见字如面 <em id="noteCount"></em></h2>
+      <div id="noteBox"></div>
+    </section>
+    <section id="list" class="page fade">
+      <h2 class="title"><small>Love List</small>恋爱清单 <em id="listProgress"></em></h2>
+      <div class="progress"><i id="listBar"></i></div>
+      <form class="card edit-form edit-only inline-form" id="todoForm">
+        <input id="todoTitle" maxlength="40" placeholder="想一起做的事，比如：一起看一次日出" required />
+        <button type="submit">添加</button>
+      </form>
+      <p class="hint edit-only">编辑模式下点击清单项可以切换完成状态</p>
+      <ul class="love-list" id="loveList"></ul>
+    </section>
+
+    <section id="album" class="page fade">
+      <h2 class="title"><small>Album</small>恋爱相册</h2>
+      <form class="card edit-form edit-only" id="photoForm">
+        <label class="file">选择照片（可多选）<input type="file" id="photoFiles" accept="image/*" multiple required /></label>
+        <input id="photoCaption" maxlength="40" placeholder="照片描述（可选）" />
+        <div class="place-picker" id="photoPlacePicker">
+          <div class="pick-row">
+            <input id="photoPlace" maxlength="30" autocomplete="off" placeholder="地点（可选），输入后点搜索选一个" />
+            <button type="button" class="pick-search">搜索</button>
+          </div>
+          <ul class="pick-list" hidden></ul>
+        </div>
+        <label class="field-label">拍摄日期（可选，不填就按上传日期排序）<input type="date" id="photoDate" /></label>
+        <input id="photoNote" maxlength="120" placeholder="写在照片背面的话（可选，拍立得模式翻面可见）" />
+        <button type="submit">上传到相册</button>
+      </form>
+      <div class="album-views" id="albumViews">
+        <button type="button" data-view="grid">网格</button>
+        <button type="button" data-view="polaroid">拍立得</button>
+        <button type="button" data-view="book">纪念册</button>
+        <button type="button" id="albumShow" class="show-btn">▶ 放映</button>
+      </div>
+      <div class="gallery" id="gallery"></div>
+      <div class="book-wrap" id="bookWrap" hidden>
+        <div class="book-stage" id="bookStage"></div>
+        <div class="book-nav">
+          <button type="button" id="bookPrev">‹ 上一页</button>
+          <span id="bookPage"></span>
+          <button type="button" id="bookNext">下一页 ›</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="footprints" class="page fade">
+      <h2 class="title"><small>Footprints</small>足迹地图 <em id="placeCount"></em></h2>
+      <form class="card edit-form edit-only" id="placeForm">
+        <div class="place-picker" id="placeNamePicker">
+          <div class="pick-row">
+            <input id="placeName" maxlength="30" autocomplete="off" placeholder="地点，比如：杭州西湖" required />
+            <button type="button" class="pick-search">搜索</button>
+          </div>
+          <ul class="pick-list" hidden></ul>
+        </div>
+        <input type="date" id="placeDate" />
+        <textarea id="placeNote" maxlength="300" placeholder="那次的故事（可选）"></textarea>
+        <label class="file">照片（可选，可多选）<input type="file" id="placePhotos" accept="image/*" multiple /></label>
+        <p class="form-note" id="placeHint">输入地点后点“搜索”，从候选里选一个；也可以直接在地图上点一下</p>
+        <button type="submit" id="placeSubmit">定位</button>
+      </form>
+      <div class="map-tools"><button type="button" id="tripBtn">▶ 旅程回放</button><span>按时间把去过的地方连起来，一站一站回看</span></div>
+      <div class="map card" id="mapBox"></div>
+      <ul class="place-list" id="placeList"></ul>
+    </section>
+
+    <section id="plans" class="page fade">
+      <h2 class="title"><small>Future</small>未来计划</h2>
+      <form class="card edit-form edit-only" id="planForm">
+        <input id="planTitle" maxlength="50" placeholder="计划，比如：一起去看极光" required />
+        <input type="date" id="planDate" title="目标日期（可选）" />
+        <textarea id="planNote" maxlength="300" placeholder="备注（可选）"></textarea>
+        <button type="submit">添加计划</button>
+      </form>
+      <div class="plans" id="planList"></div>
+    </section>
+
+    <section id="messages" class="page fade">
+      <h2 class="title"><small>Wishes</small>留言祝福</h2>
+      <form class="card msg-form" id="msgForm">
+        <input id="msgName" maxlength="20" placeholder="你的昵称" required />
+        <textarea id="msgText" maxlength="300" placeholder="写下你的祝福（至少5个字）" required></textarea>
+        <button type="submit">送出祝福</button>
+      </form>
+      <div id="msgList"></div>
+    </section>
+  </main>
+
+  <footer id="footer"></footer>
+
+  <div class="edit-bar" id="editBar">
+    <button id="installBtn" hidden>添加到桌面</button>
+    <button class="edit-only" id="settingsBtn">站点设置</button>
+    <button class="edit-only local-only" id="exportBtn">导出备份</button>
+    <label class="edit-only local-only">导入备份<input type="file" id="importFile" accept=".json" hidden /></label>
+    <button class="edit-only cloud-only" id="logoutBtn">退出登录</button>
+    <button id="editToggle">编辑</button>
+  </div>
+
+  <div class="modal" id="loginModal">
+    <form class="card modal-box" id="loginForm">
+      <h3>登录后编辑</h3>
+      <input type="email" id="loginEmail" placeholder="邮箱" autocomplete="username" required />
+      <input type="password" id="loginPassword" placeholder="密码" autocomplete="current-password" required />
+      <div class="modal-actions">
+        <button type="button" class="ghost" data-close>取消</button>
+        <button type="submit">登录</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal" id="pinModal">
+    <div class="card modal-box">
+      <h3 id="pinTitle">在地图上选位置</h3>
+      <div class="pin-map" id="pinMap"></div>
+      <p class="pin-tip" id="pinTip"></p>
+      <div class="modal-actions">
+        <button type="button" class="ghost" data-close>取消</button>
+        <button type="button" id="pinOk" disabled>就在这里</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="placeModal">
+    <div class="card modal-box">
+      <h3 id="placeModalTitle">选择地点</h3>
+      <ul class="pick-options" id="placeOptions"></ul>
+      <div class="modal-actions">
+        <button type="button" class="ghost" data-close>不放到地图上</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="settingsModal">
+    <form class="card modal-box" id="settingsForm">
+      <h3>站点设置</h3>
+      <label>在一起的时间<input type="datetime-local" id="setStart" required /></label>
+      <label>第一次认识的日期<input type="date" id="setMet" /></label>
+      <label>他的名字<input id="setBoy" maxlength="12" required /></label>
+      <label>她的名字<input id="setGirl" maxlength="12" required /></label>
+      <label>一句话<input id="setSlogan" maxlength="40" /></label>
+      <label class="file">更换他的头像<input type="file" id="setBoyAvatar" accept="image/*" /></label>
+      <label class="file">更换她的头像<input type="file" id="setGirlAvatar" accept="image/*" /></label>
+      <label class="file">更换顶部背景<input type="file" id="setBg" accept="image/*" /></label>
+      <label>背景虚化 <span id="setBlurValue"></span><input type="range" id="setBlur" min="0" max="20" step="1" /></label>
+
+      <fieldset class="set-group">
+        <legend>卡通小人</legend>
+        <div class="chibi-row">
+          <span>他</span>
+          <select id="setBoyHair"><option value="short">短发</option><option value="long">长发</option><option value="bun">丸子头</option></select>
+          <label class="swatch">发色<input type="color" id="setBoyHairColor" /></label>
+          <label class="swatch">衣服<input type="color" id="setBoyCloth" /></label>
+        </div>
+        <div class="chibi-row">
+          <span>她</span>
+          <select id="setGirlHair"><option value="short">短发</option><option value="long">长发</option><option value="bun">丸子头</option></select>
+          <label class="swatch">发色<input type="color" id="setGirlHairColor" /></label>
+          <label class="swatch">衣服<input type="color" id="setGirlCloth" /></label>
+        </div>
+        <label class="check-row"><input type="checkbox" id="setChibiShow" /> 显示卡通小人</label>
+      </fieldset>
+
+      <fieldset class="set-group">
+        <legend>生日（用于纪念日提醒，可不填）</legend>
+        <label>他的生日<input type="date" id="setBoyBirthday" /></label>
+        <label>她的生日<input type="date" id="setGirlBirthday" /></label>
+      </fieldset>
+
+      <fieldset class="set-group">
+        <legend>背景音乐</legend>
+        <p class="form-note" id="musicName"></p>
+        <label class="file">上传音乐（mp3，建议 10MB 以内）<input type="file" id="setMusic" accept="audio/*" /></label>
+        <label class="check-row"><input type="checkbox" id="setMusicRemove" /> 移除背景音乐</label>
+      </fieldset>
+      <div class="modal-actions">
+        <button type="button" class="ghost" data-close>取消</button>
+        <button type="submit">保存</button>
+      </div>
+    </form>
+  </div>
+
+  <button class="music-btn" id="musicBtn" title="背景音乐" hidden>
+    <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" /><circle cx="20" cy="20" r="13" class="groove" /><circle cx="20" cy="20" r="8" class="groove" /><circle cx="20" cy="20" r="4.5" class="label" /><circle cx="20" cy="20" r="1.2" class="hole" /></svg>
+  </button>
+  <audio id="bgm" loop preload="none"></audio>
+
+  <div class="reel" id="show" aria-hidden="true">
+    <div class="show-bar"><i id="showBar"></i></div>
+    <div class="show-stage" id="showStage"></div>
+    <div class="show-ctl">
+      <button type="button" id="showPrev" title="上一张">‹</button>
+      <button type="button" id="showPause" title="暂停 / 继续">❚❚</button>
+      <button type="button" id="showNext" title="下一张">›</button>
+    </div>
+    <button type="button" class="show-close" id="showClose" title="关闭">✕</button>
+  </div>
+
+  <div class="lightbox" id="lightbox"><img alt="" /><p></p></div>
+  <div class="toast" id="toast"></div>
+
+  <script src="leaflet.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
