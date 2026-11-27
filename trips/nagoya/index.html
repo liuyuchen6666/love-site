@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏯 名古屋跨年小旅行 · 2026.12.31 – 2027.01.03</title>
+<!-- 字体不阻塞页面：国内连不上 Google 字体时，直接用系统字体，不会卡白屏 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"></noscript>
+<style>
+  :root{
+    --pink:#3d6fa8; --pink-l:#e2ebf6; --pink-ll:#f4f7fb;
+    --mint:#7fd8c3; --mint-l:#dff7f0;
+    --yellow:#ffd35c; --yellow-l:#fff6d6;
+    --lav:#8fa3c8; --lav-l:#e9eef7;
+    --blue:#8cc8ff; --blue-l:#e4f2ff;
+    --text:#5b4a55; --muted:#9a8791;
+    --radius:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Zen Maru Gothic","PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--text); line-height:1.75;
+    background:
+      radial-gradient(circle at 10% 10%, #e6eef8 0 12%, transparent 13%) 0 0/120px 120px,
+      radial-gradient(circle at 60% 70%, #e8f8f3 0 10%, transparent 11%) 0 0/140px 140px,
+      var(--pink-ll);
+    overflow-x:hidden;
+  }
+
+  /* ---------- falling snow & petals ---------- */
+  .flake{position:fixed;top:-40px;z-index:0;pointer-events:none;animation:fall linear infinite;opacity:.75}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+    padding:10px 12px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);
+    border-bottom:3px dashed var(--pink-l);
+  }
+  nav a{
+    text-decoration:none;color:var(--text);font-weight:700;font-size:14px;
+    padding:6px 14px;border-radius:999px;background:var(--pink-l);transition:.2s;
+  }
+  nav a:hover{background:var(--pink);color:#fff;transform:translateY(-2px) rotate(-2deg)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;max-width:1100px;margin:24px auto 0;padding:0 16px;z-index:1}
+  .hero-img{
+    width:100%;border-radius:32px;display:block;
+    box-shadow:0 12px 0 var(--pink-l),0 20px 40px rgba(61,111,168,.22);
+    border:6px solid #fff;
+  }
+  .hero-card{
+    position:relative;margin:-70px auto 0;max-width:760px;text-align:center;
+    background:#fff;border-radius:32px;padding:28px 24px 22px;
+    box-shadow:0 10px 30px rgba(61,111,168,.22);border:3px solid var(--pink-l);
+  }
+  .hero-card h1{font-size:clamp(26px,5vw,42px);font-weight:900;letter-spacing:2px;color:#2f5a99}
+  .hero-card h1 span{display:inline-block;animation:bounce 1.6s ease-in-out infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .hero-card .sub{color:var(--muted);margin-top:4px}
+  .treat{
+    display:inline-block;margin-top:16px;padding:10px 22px;border-radius:20px;
+    background:linear-gradient(135deg,var(--yellow-l),#fff);border:2px dashed var(--yellow);
+    color:#b07a00;font-weight:900;font-size:16px;letter-spacing:1px;line-height:1.7;
+  }
+  .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+  .tag{padding:4px 12px;border-radius:999px;font-size:13px;font-weight:700}
+  .t-pink{background:var(--pink-l);color:#2f5a99}
+  .t-mint{background:var(--mint-l);color:#2f9b83}
+  .t-yel{background:var(--yellow-l);color:#b98a00}
+  .t-lav{background:var(--lav-l);color:#4a63a0}
+  .t-blue{background:var(--blue-l);color:#2f7fcc}
+
+  .countdown{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+  .cd{background:var(--yellow-l);border-radius:18px;padding:8px 14px;min-width:70px}
+  .cd b{display:block;font-size:26px;color:#ff9b3d;line-height:1.2}
+  .cd small{font-size:12px;color:var(--muted)}
+
+  /* ---------- sections ---------- */
+  main{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+  section{margin-top:56px}
+  .sec-title{
+    display:flex;align-items:center;gap:10px;justify-content:center;
+    font-size:26px;font-weight:900;margin-bottom:20px;color:#2f5a99;text-align:center;
+  }
+  .sec-title::before,.sec-title::after{content:"◆";color:var(--mint);font-size:20px}
+
+  .card{
+    background:#fff;border-radius:var(--radius);padding:22px;
+    box-shadow:0 6px 0 var(--pink-l),0 10px 24px rgba(0,0,0,.04);
+    border:2px solid #edf2f9;
+  }
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+
+  /* overview mini cards */
+  .ov{text-align:center;transition:.25s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+  .ov:hover{transform:translateY(-6px) rotate(-1deg)}
+  .ov .emoji{font-size:42px}
+  .ov .date{font-weight:900;font-size:18px;margin-top:4px}
+  .ov .theme{color:var(--muted);font-size:14px}
+
+  /* notice */
+  .notice{background:var(--yellow-l);border:3px dashed var(--yellow);border-radius:var(--radius);padding:18px 22px}
+  .notice h3{color:#c78f00;margin-bottom:6px}
+  .notice li{margin-left:20px;margin-top:4px}
+
+  /* ---------- day block ---------- */
+  .day{
+    background:#fff;border-radius:32px;overflow:hidden;
+    box-shadow:0 8px 0 var(--c-l, var(--pink-l)),0 16px 36px rgba(0,0,0,.05);
+  }
+  .day-head{display:grid;grid-template-columns:1.1fr 1fr;gap:0}
+  .day-head img{width:100%;height:100%;object-fit:cover;display:block;min-height:260px}
+  .day-info{padding:26px;background:var(--c-l, var(--pink-l));display:flex;flex-direction:column;justify-content:center}
+  .day-badge{
+    display:inline-block;align-self:flex-start;background:#fff;color:var(--c, var(--pink));
+    font-weight:900;padding:4px 14px;border-radius:999px;font-size:14px;
+  }
+  .day-info h2{font-size:28px;font-weight:900;margin:8px 0 4px;color:var(--c-d, #2f5a99)}
+  .day-info p{font-size:15px}
+  .weather{margin-top:10px;font-size:14px;color:var(--muted)}
+
+  .timeline{padding:26px 26px 30px 26px;position:relative}
+  .item{position:relative;padding-left:78px;margin-bottom:18px}
+  .item:last-child{margin-bottom:0}
+  .item::before{
+    content:"";position:absolute;left:30px;top:44px;bottom:-22px;width:3px;
+    background:repeating-linear-gradient(var(--c-l,#cfdcee) 0 6px,transparent 6px 12px);
+  }
+  .item:last-child::before{display:none}
+  .dot{
+    position:absolute;left:6px;top:0;width:52px;height:52px;border-radius:50%;
+    display:grid;place-items:center;font-size:24px;background:var(--c-l,var(--pink-l));
+    border:3px solid #fff;box-shadow:0 3px 0 rgba(0,0,0,.05);
+  }
+  .time{font-size:13px;font-weight:900;color:var(--c,var(--pink))}
+  .item h4{font-size:18px;font-weight:900}
+  .item p{font-size:14.5px;color:#6d5d66}
+  .item .tip{
+    margin-top:6px;font-size:13px;background:var(--blue-l);color:#3a6fa0;
+    border-radius:12px;padding:6px 10px;display:inline-block;
+  }
+
+  /* shopping highlight */
+  .shop{
+    background:linear-gradient(135deg,#eef4fb,#fff8e6);border:3px solid #b9cde8;
+    border-radius:22px;padding:14px 16px 14px 78px;margin-left:0;
+  }
+  .shop .dot{left:10px;top:12px;background:#fff;animation:wiggle 2s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+  .shop .label{
+    display:inline-block;background:var(--pink);color:#fff;font-size:12px;font-weight:900;
+    padding:2px 10px;border-radius:999px;margin-left:6px;vertical-align:2px;
+  }
+  .shop ul{margin:6px 0 0 18px;font-size:14px}
+  .shop li{margin-top:2px}
+
+
+  /* ---------- shopping guide ---------- */
+  .area h3{font-size:19px;font-weight:900;margin-bottom:6px}
+  .area .icon{font-size:34px}
+  .area ul{margin-left:18px;font-size:14.5px}
+  .area .when{font-size:13px;color:var(--muted);margin-top:8px}
+
+  /* souvenir */
+  .sv{text-align:center}
+  .sv .big{font-size:46px}
+  .sv h4{font-weight:900;margin-top:4px}
+  .sv p{font-size:13.5px;color:var(--muted)}
+
+  /* checklist */
+  .check label{
+    display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:14px;
+    cursor:pointer;transition:.15s;font-size:15px;
+  }
+  .check label:hover{background:var(--pink-ll)}
+  .check input{appearance:none;width:22px;height:22px;border-radius:8px;border:3px solid var(--pink);flex-shrink:0;display:grid;place-items:center;cursor:pointer}
+  .check input:checked{background:var(--pink)}
+  .check input:checked::after{content:"✓";color:#fff;font-weight:900;font-size:14px}
+  .check input:checked + span{text-decoration:line-through;color:var(--muted)}
+  .progress{height:14px;border-radius:999px;background:var(--pink-l);overflow:hidden;margin:6px 0 12px}
+  .progress div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--yellow));transition:.4s;border-radius:999px}
+
+  /* transport table */
+  table{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:14.5px}
+  td{background:var(--mint-l);padding:10px 14px}
+  td:first-child{border-radius:14px 0 0 14px;font-weight:900;white-space:nowrap}
+  td:last-child{border-radius:0 14px 14px 0}
+
+  footer{text-align:center;padding:30px 16px 50px;color:var(--muted);font-size:14px;position:relative;z-index:1}
+  footer .chick{font-size:46px;display:inline-block;animation:bounce 1.2s infinite}
+
+  .totop{
+    position:fixed;right:18px;bottom:18px;z-index:60;width:54px;height:54px;border-radius:50%;
+    background:var(--yellow);border:4px solid #fff;font-size:26px;display:grid;place-items:center;
+    box-shadow:0 6px 16px rgba(0,0,0,.12);text-decoration:none;transition:.2s;
+  }
+  .totop:hover{transform:scale(1.1) rotate(10deg)}
+
+  @media (max-width:720px){
+    .day-head{grid-template-columns:1fr}
+    .day-head img{min-height:200px}
+    .item{padding-left:66px}
+    .shop{padding-left:66px}
+    .dot{width:44px;height:44px;font-size:20px}
+    .item::before{left:26px}
+    .hero-card{margin-top:-30px}
+  }
+  @media print{ nav,.flake,.totop{display:none} }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html#plans" style="background:var(--pink);color:#fff">🏠 回小站</a>
+  <a href="#overview">🗓 总览</a>
+  <a href="#day1">🎆 12/31</a>
+  <a href="#day2">⛩ 1/1</a>
+  <a href="#day3">🛍 1/2</a>
+  <a href="#day4">🏯 1/3</a>
+  <a href="#shopping">🛒 购物攻略</a>
+  <a href="#souvenir">🎁 伴手礼</a>
+  <a href="#tips">🚃 交通 & 清单</a>
+</nav>
+
+<div class="hero">
+  <img class="hero-img" src="img/cover.jpg?v=2" alt="名古屋跨年插画">
+  <div class="hero-card">
+    <h1><span>🏯</span> 名古屋跨年小旅行 <span>🎆</span></h1>
+    <div class="sub">2026.12.31（四）→ 2027.01.03（日）· 4天3晚 · 跨年 × 初诣 × 福袋血拼</div>
+    <div class="tags">
+      <span class="tag t-pink">🛍 福袋大作战</span>
+      <span class="tag t-mint">⛩ 热田神宫初诣</span>
+      <span class="tag t-yel">✨ 花之乡灯光秀</span>
+      <span class="tag t-lav">🏯 名古屋城</span>
+    </div>
+    <div class="treat">✧ 饭饭请美丽的阿姨安排！✧<br>美丽有钱的姐姐万岁 🍽️💰👑</div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= 总览 ================= -->
+<section id="overview">
+  <div class="sec-title">行程总览</div>
+  <div class="grid g4">
+    <a class="card ov" href="#day1"><div class="emoji">🎆</div><div class="date">12/31 周四</div><div class="theme">抵达 · 名古屋站逛街<br>大晦日夜景跨年</div></a>
+    <a class="card ov" href="#day2"><div class="emoji">⛩️</div><div class="date">1/1 周五</div><div class="theme">热田神宫初诣<br>奥特莱斯福袋 + 灯光秀</div></a>
+    <a class="card ov" href="#day3"><div class="emoji">🛍️</div><div class="date">1/2 周六</div><div class="theme">百货店「初卖」福袋日<br>大须商店街淘宝</div></a>
+    <a class="card ov" href="#day4"><div class="emoji">🏯</div><div class="date">1/3 周日</div><div class="theme">名古屋城<br>伴手礼扫货 · 返程</div></a>
+  </div>
+
+  <div class="notice" style="margin-top:20px">
+    <h3>⚠️ 日本过年小贴士（超重要！）</h3>
+    <ul>
+      <li><b>12/31</b>：大部分商场会<b>提前打烊</b>（多在 18:00 左右），购物请安排在下午。</li>
+      <li><b>1/1</b>：市区百货店基本<b>休息</b>；但奥特莱斯、部分购物中心元旦就开门卖福袋，所以这天去奥特莱斯最划算！</li>
+      <li><b>1/2</b>：松坂屋、高岛屋、三越等百货店<b>「初売り」开卖福袋</b>，早上会排队，想要人气福袋要早点去。</li>
+      <li><b>名古屋城</b>年末年初一般 12/29–1/1 闭馆，所以安排在 1/3 去 👌</li>
+      <li>以上营业时间每年会有小调整，出发前一周记得再看一眼各官网哦～</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= DAY 1 ================= -->
+<section id="day1">
+  <div class="day" style="--c:#4b6cb7;--c-l:#e6ecf9;--c-d:#34509a">
+    <div class="day-head">
+      <img src="img/day1.jpg?v=2" alt="名古屋站与绿洲21夜景">
+      <div class="day-info">
+        <span class="day-badge">DAY 1 · 12/31 周四 · 大晦日</span>
+        <h2>你好呀，名古屋！🎆</h2>
+        <p>到达后先在名古屋站周边轻松逛一逛，晚上去荣看宇宙飞船一样的绿洲21，最后迎接 2027 年的到来～</p>
+        <div class="weather">🌤 参考气温 1°C ~ 9°C，风比较大，围巾帽子安排上！</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="item">
+        <div class="dot">✈️</div>
+        <div class="time">上午</div>
+        <h4>抵达名古屋 · 入住酒店</h4>
+        <p>从中部国际机场坐名铁「μSKY」特急约 28 分钟直达名古屋站。推荐住名古屋站或荣附近，逛街提包回酒店都方便。</p>
+        <span class="tip">💡 先放行李再出门，空手才能装更多战利品！</span>
+      </div>
+      <div class="item shop">
+        <div class="dot">🛍️</div>
+        <div class="time">13:30 – 17:30</div>
+        <h4>名古屋站商圈逛街 <span class="label">购物时间 ①</span></h4>
+        <p>年前最后一天，商场多数提前打烊，抓紧下午！</p>
+        <ul>
+          <li><b>JR 名古屋高岛屋</b>：化妆品、美妆柜台超全</li>
+          <li><b>JR Gate Tower</b>：Hands 杂货、文具、生活小物</li>
+          <li><b>名铁百货</b>：和巨型模特 <b>「娜娜酱」</b> 合影打卡 📸</li>
+          <li><b>近铁 Pass'e / 名站地下街 Esca</b>：平价服饰、药妆</li>
+        </ul>
+        <span class="tip">💡 可以顺便踩点明天、后天要买的福袋店铺，记下开门时间</span>
+      </div>
+      <div class="item">
+        <div class="dot">🛸</div>
+        <div class="time">20:00 – 22:00</div>
+        <h4>荣 · 绿洲21「水之宇宙船」& 未来塔夜景</h4>
+        <p>地铁东山线到「荣」站。绿洲21 顶部的玻璃水池晚上会亮灯，超梦幻；旁边的中部电力 MIRAI TOWER 和久屋大通公园 RAYARD 一起拍。</p>
+      </div>
+      <div class="item">
+        <div class="dot">🔔</div>
+        <div class="time">23:00 – 00:30（可选）</div>
+        <h4>跨年夜 · 热田神宫「二年参り」</h4>
+        <p>热田神宫大晦日通宵开放，可以在 0 点钟声里完成第一次参拜，气氛满分！怕冷怕挤的话就回酒店看红白歌会，明早再去也 OK～</p>
+        <span class="tip">💡 跨年夜名铁、地铁一般会加开深夜班次，具体以官网为准</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 2 ================= -->
+<section id="day2">
+  <div class="day" style="--c:#2fb796;--c-l:#dff7f0;--c-d:#1f8f74">
+    <div class="day-head">
+      <img src="img/day2.jpg?v=2" alt="初诣和灯光隧道">
+      <div class="day-info">
+        <span class="day-badge">DAY 2 · 1/1 周五 · 元旦</span>
+        <h2>新年快乐！明けましておめでとう ⛩️</h2>
+        <p>早上去热田神宫初诣、抽签求御守；下午冲奥特莱斯抢元旦福袋；傍晚在「花之乡」看童话般的灯光隧道。</p>
+        <div class="weather">🌤 参考气温 0°C ~ 8°C · 今天走路多，穿舒服的鞋！</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="item">
+        <div class="dot">⛩️</div>
+        <div class="time">07:30 – 09:30</div>
+        <h4>热田神宫 · 初诣</h4>
+        <p>名古屋最有名的神社，供奉三神器之一的草薙神剑。名铁「神宫前」站或地铁「神宫西」站下车。抽一支新年签（おみくじ），挑一个可爱的御守带回家～</p>
+        <span class="tip">💡 元旦白天人超级多，越早去越好；日出后 7–8 点相对舒服</span>
+      </div>
+      <div class="item shop">
+        <div class="dot">🎁</div>
+        <div class="time">11:00 – 15:30</div>
+        <h4>三井奥特莱斯 爵士梦长岛 · 元旦福袋 <span class="label">购物时间 ②</span></h4>
+        <p>日本最大级奥特莱斯之一，元旦通常就开门卖福袋，市区百货休息的这天来这里刚刚好！</p>
+        <ul>
+          <li>从名铁巴士中心坐高速巴士约 50 分钟直达</li>
+          <li>运动品牌、轻奢、童装、户外品牌都有，福袋 + 年初折扣叠加</li>
+          <li>先领园区地图，按「想去 Top 5」规划路线，不要乱逛浪费体力</li>
+        </ul>
+        <span class="tip">💡 买太多可以先寄存储物柜，或者直接带个可折叠行李袋</span>
+      </div>
+      <div class="item">
+        <div class="dot">🌟</div>
+        <div class="time">16:00 – 19:30</div>
+        <h4>なばなの里（花之乡）· 冬季灯光秀</h4>
+        <p>从奥特莱斯坐巴士约 10 分钟。傍晚亮灯那一刻超震撼，「光之隧道」和大型主题灯光秀是必拍机位，拍照超出片 ✨</p>
+        <span class="tip">💡 门票一般含园内消费券；晚上很冷，暖宝宝贴起来</span>
+      </div>
+      <div class="item">
+        <div class="dot">🚌</div>
+        <h4>坐巴士回市区</h4>
+        <p>坐巴士回名古屋市区，约 21:00 到酒店。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 3 ================= -->
+<section id="day3">
+  <div class="day" style="--c:#e8933a;--c-l:#fff0dc;--c-d:#b86a14">
+    <div class="day-head">
+      <img src="img/day3.jpg?v=2" alt="福袋和大须">
+      <div class="day-info">
+        <span class="day-badge">DAY 3 · 1/2 周六 · 初売り</span>
+        <h2>福袋大作战！血拼日 🛍️</h2>
+        <p>今天是百货店新年开卖的大日子！上午荣地区百货抢福袋，下午去大须商店街淘中古、动漫周边和小吃。</p>
+        <div class="weather">🌤 参考气温 1°C ~ 9°C · 今天主要在室内和商店街，轻装上阵</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="item shop">
+        <div class="dot">💰</div>
+        <div class="time">09:00 – 12:30</div>
+        <h4>荣 · 百货店初卖福袋 <span class="label">购物时间 ③</span></h4>
+        <p>开门前就会排队，人气福袋先到先得！</p>
+        <ul>
+          <li><b>松坂屋名古屋店</b>：名古屋老牌百货，福袋种类超多</li>
+          <li><b>名古屋三越 荣店</b>：化妆品、服饰福袋</li>
+          <li><b>荣 PARCO / LACHIC</b>：潮牌、街头服饰、潮流小物</li>
+          <li>荣地区还有宝可梦、三丽鸥等角色周边店，出发前查一下最新位置～</li>
+        </ul>
+        <span class="tip">💡 想要的福袋提前在官网/Instagram 看清楚发售时间和是否需要预约抽选</span>
+      </div>
+      <div class="item">
+        <div class="dot">🏮</div>
+        <div class="time">13:30 – 14:30</div>
+        <h4>大须观音 · 新年参拜</h4>
+        <p>地铁鹤舞线「大须观音」站。红色大殿超上镜，正月里比热田神宫轻松很多，还能喂喂鸽子 🕊️</p>
+      </div>
+      <div class="item shop">
+        <div class="dot">🎮</div>
+        <div class="time">14:30 – 18:00</div>
+        <h4>大须商店街 · 淘宝时间 <span class="label">购物时间 ④</span></h4>
+        <p>1200 多家店铺的复古商店街，超好逛！</p>
+        <ul>
+          <li><b>KOMEHYO 本店</b>：日本最大二手名牌店，包包、手表、首饰</li>
+          <li>动漫手办、扭蛋、模型、古着小店</li>
+          <li>路边小吃：可以边走边吃一点点</li>
+        </ul>
+        <span class="tip">💡 大须的扭蛋机特别多，准备好 100 日元硬币！</span>
+      </div>
+      <div class="item">
+        <div class="dot">🧳</div>
+        <h4>回酒店 · 整理战利品</h4>
+        <p>回酒店整理战利品、打包行李。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DAY 4 ================= -->
+<section id="day4">
+  <div class="day" style="--c:#4aa3f0;--c-l:#e4f2ff;--c-d:#2f7fcc">
+    <div class="day-head">
+      <img src="img/day4.jpg?v=2" alt="名古屋城与伴手礼">
+      <div class="day-info">
+        <span class="day-badge">DAY 4 · 1/3 周日 · 返程</span>
+        <h2>下次见啦，名古屋 🏯</h2>
+        <p>上午去名古屋城看金鯱，下午在名古屋站把伴手礼一次买齐，再带着满满的回忆回家～</p>
+        <div class="weather">🌤 参考气温 1°C ~ 9°C · 行程可按返程航班时间前后挪动</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="item">
+        <div class="dot">🏯</div>
+        <div class="time">09:00 – 11:30</div>
+        <h4>名古屋城 · 本丸御殿</h4>
+        <p>地铁名城线「名古屋城」站。屋顶金光闪闪的「金鯱」是名古屋的象征；本丸御殿里金碧辉煌的障壁画超华丽。正月期间有时还有新年活动～</p>
+        <span class="tip">💡 酒店先退房寄存行李，逛完再回去拿</span>
+      </div>
+      <div class="item shop">
+        <div class="dot">🎁</div>
+        <div class="time">13:00 – 15:30</div>
+        <h4>名古屋站 · 伴手礼最后冲刺 <span class="label">购物时间 ⑤</span></h4>
+        <ul>
+          <li><b>JR 名古屋站「Gift Kiosk / グランドキヨスク」</b>：名古屋限定点心一网打尽</li>
+          <li><b>ぴよりん（小鸡布丁）</b>：名古屋站限定的小黄鸡布丁，可爱到舍不得吃 🐥</li>
+          <li><b>高岛屋地下食品馆</b>：坂角虾饼、青柳外郎糕、名古屋限定 Kitty</li>
+          <li>还没买够？去中部机场的商店还能再补一波！</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="dot">🚅</div>
+        <div class="time">16:00 以后</div>
+        <h4>前往机场 / 车站 · 返程</h4>
+        <p>名铁 μSKY 约 28 分钟到中部国际机场，国际线建议起飞前 2.5–3 小时到达。拜拜名古屋，下次再来！👋</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 购物攻略 ================= -->
+<section id="shopping">
+  <div class="sec-title">购物攻略地图</div>
+  <div class="grid g2">
+    <div class="card area">
+      <div class="icon">🚉</div>
+      <h3>名古屋站商圈</h3>
+      <ul>
+        <li>JR 名古屋高岛屋（美妆、名牌、地下食品馆）</li>
+        <li>JR Gate Tower Mall（Hands、杂货）</li>
+        <li>名铁百货（娜娜酱合影）· 近铁 Pass'e</li>
+        <li>地下街 Esca / Unimall：药妆、平价服饰</li>
+      </ul>
+      <div class="when">📅 安排在：12/31 下午、1/3 下午</div>
+    </div>
+    <div class="card area">
+      <div class="icon">🌃</div>
+      <h3>荣商圈</h3>
+      <ul>
+        <li>松坂屋名古屋店 · 名古屋三越</li>
+        <li>荣 PARCO · LACHIC：潮牌与潮流小物</li>
+        <li>绿洲21 · RAYARD 久屋大通公园</li>
+        <li>角色周边店（宝可梦 / 三丽鸥等）</li>
+      </ul>
+      <div class="when">📅 安排在：1/2 上午（福袋！）、12/31 晚上</div>
+    </div>
+    <div class="card area">
+      <div class="icon">🏮</div>
+      <h3>大须商店街</h3>
+      <ul>
+        <li>KOMEHYO：二手名牌包包 / 首饰</li>
+        <li>动漫、手办、扭蛋、模型、古着</li>
+        <li>药妆店、百元店也很多</li>
+      </ul>
+      <div class="when">📅 安排在：1/2 下午</div>
+    </div>
+    <div class="card area">
+      <div class="icon">🎡</div>
+      <h3>三井奥特莱斯 爵士梦长岛</h3>
+      <ul>
+        <li>约 300 家店铺，运动 / 户外 / 轻奢 / 童装</li>
+        <li>元旦福袋 + 新年折扣</li>
+        <li>和花之乡灯光秀顺路，一天搞定</li>
+      </ul>
+      <div class="when">📅 安排在：1/1 中午到下午</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-weight:900;margin-bottom:6px">🛒 我的购物心愿单 <small style="color:var(--muted);font-weight:500">（勾选会自动保存在浏览器里）</small></h3>
+    <div class="progress"><div id="wishBar"></div></div>
+    <div class="check grid g2" data-key="wish">
+      <label><input type="checkbox"><span>人气品牌福袋 × 1 🛍</span></label>
+      <label><input type="checkbox"><span>新年御守（热田神宫）⛩️</span></label>
+      <label><input type="checkbox"><span>药妆 · 面膜 · 防晒</span></label>
+      <label><input type="checkbox"><span>奥特莱斯运动鞋 / 外套 👟</span></label>
+      <label><input type="checkbox"><span>大须扭蛋 & 动漫小物 🎮</span></label>
+      <label><input type="checkbox"><span>名古屋限定 Kitty 周边 🐱</span></label>
+      <label><input type="checkbox"><span>二手名牌包（KOMEHYO 看看）👜</span></label>
+      <label><input type="checkbox"><span>给家人朋友的伴手礼 🎁</span></label>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 伴手礼 ================= -->
+<section id="souvenir">
+  <div class="sec-title">名古屋伴手礼</div>
+  <div class="grid g4">
+    <div class="card sv"><div class="big">🐥</div><h4>ぴよりん</h4><p>名古屋站限定小鸡布丁，用名古屋交趾鸡蛋做的，颜值天花板</p></div>
+    <div class="card sv"><div class="big">🦐</div><h4>坂角「ゆかり」虾饼</h4><p>整只虾压制的仙贝，送长辈超有面子</p></div>
+    <div class="card sv"><div class="big">🍡</div><h4>青柳外郎糕</h4><p>五颜六色软糯糯的名古屋传统点心</p></div>
+    <div class="card sv"><div class="big">🐟</div><h4>金鯱周边</h4><p>名古屋城的金色鯱鱼，钥匙扣、毛巾、小摆件都很可爱</p></div>
+    <div class="card sv"><div class="big">🍞</div><h4>小仓吐司味零食</h4><p>名古屋早餐名物「红豆吐司」口味的饼干、糖果</p></div>
+    <div class="card sv"><div class="big">🐱</div><h4>名古屋限定 Kitty</h4><p>穿成金鯱、炸虾造型的 Hello Kitty 挂件</p></div>
+    <div class="card sv"><div class="big">🍗</div><h4>手羽先口味仙贝</h4><p>名古屋鸡翅风味，下酒小零食</p></div>
+    <div class="card sv"><div class="big">⛩️</div><h4>神社御守</h4><p>热田神宫的御守、绘马，祈求新一年好运</p></div>
+  </div>
+</section>
+
+<!-- ================= 交通 & 清单 ================= -->
+<section id="tips">
+  <div class="sec-title">交通 & 出发清单</div>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="font-weight:900;margin-bottom:6px">🚃 交通小抄</h3>
+      <table>
+        <tr><td>🎫 土日环保票</td><td>「ドニチエコきっぷ」周末和节假日地铁 + 市巴士一日乘车券（约 620 日元）。<b>1/1 元旦、1/2 周六、1/3 周日都能用！</b></td></tr>
+        <tr><td>💳 IC 卡</td><td>manaca / Suica / ICOCA 都能刷，手机 Apple Pay 也行</td></tr>
+        <tr><td>✈️ 机场</td><td>名铁 μSKY 名古屋 ⇄ 中部机场约 28 分钟，需另购特别车票</td></tr>
+        <tr><td>🚌 长岛 / 花之乡</td><td>名铁巴士中心（名铁百货旁）坐高速巴士，正月人多建议提早买票</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="font-weight:900;margin-bottom:6px">🧳 出发前清单</h3>
+      <div class="progress"><div id="packBar"></div></div>
+      <div class="check" data-key="pack">
+        <label><input type="checkbox"><span>护照 & 签证 🛂</span></label>
+        <label><input type="checkbox"><span>机票 / 酒店确认单</span></label>
+        <label><input type="checkbox"><span>日元现金（神社、扭蛋要用硬币）💴</span></label>
+        <label><input type="checkbox"><span>羽绒服、围巾、手套、暖宝宝 🧣</span></label>
+        <label><input type="checkbox"><span>好走的鞋子 👟</span></label>
+        <label><input type="checkbox"><span>可折叠购物袋 / 空行李箱 🧳</span></label>
+        <label><input type="checkbox"><span>充电宝 & 转换插头（日本是 A 型扁插）🔌</span></label>
+        <label><input type="checkbox"><span>流量卡 / eSIM 📶</span></label>
+        <label><input type="checkbox"><span>护手霜、润唇膏（冬天很干燥）💄</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="chick">🏯</div>
+  <p>祝你 2027 年新年快乐，福袋全中、好运连连！</p>
+  <p style="font-size:12px;margin-top:6px">* 营业时间、票价以出发前各官网公告为准</p>
+</footer>
+
+<a class="totop" href="#" title="回到顶部">⬆️</a>
+
+<script>
+  // falling snow & petals
+  const pieces = ["❄","❄","⭐","❄"];
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement("div");
+    s.className = "flake";
+    s.textContent = pieces[i % pieces.length];
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.fontSize = 12 + Math.random() * 14 + "px";
+    s.style.animationDuration = 10 + Math.random() * 14 + "s";
+    s.style.animationDelay = -Math.random() * 20 + "s";
+    s.style.color = ["#a9c4ea", "#9fe0d0", "#ffd35c"][i % 3];
+    document.body.appendChild(s);
+  }
+
+  // countdown
+  const target = new Date("2026-12-31T00:00:00+09:00");
+  const cd = document.getElementById("countdown");
+  function tick() {
+    const diff = target - new Date();
+    if (diff <= 0) {
+      cd.innerHTML = '<div class="cd"><b>🎉</b><small>旅行进行中 / 已完成！</small></div>';
+      return;
+    }
+    const d = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24,
+          m = Math.floor(diff / 6e4) % 60, s = Math.floor(diff / 1e3) % 60;
+    cd.innerHTML = [[d, "天"], [h, "时"], [m, "分"], [s, "秒"]]
+      .map(([v, u]) => `<div class="cd"><b>${v}</b><small>${u}</small></div>`).join("") +
+      '<div class="cd" style="background:var(--pink-l)"><b>⏳</b><small>出发倒计时</small></div>';
+  }
+  tick(); setInterval(tick, 1000);
+
+  // checklists with localStorage
+  document.querySelectorAll(".check").forEach(box => {
+    const key = "nagoya-" + box.dataset.key;
+    const inputs = [...box.querySelectorAll("input")];
+    const bar = document.getElementById(box.dataset.key + "Bar");
+    const saved = JSON.parse(localStorage.getItem(key) || "[]");
+    inputs.forEach((el, i) => { el.checked = !!saved[i]; });
+    const update = () => {
+      localStorage.setItem(key, JSON.stringify(inputs.map(el => el.checked)));
+      if (bar) bar.style.width = inputs.filter(el => el.checked).length / inputs.length * 100 + "%";
+    };
+    inputs.forEach(el => el.addEventListener("change", update));
+    update();
+  });
+</script>
+</body>
+</html>
